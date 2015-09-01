@@ -43,7 +43,9 @@ which will probably break code that used this function.
 In contrast, the import declaration remains unchanged unless we choose to
 rerun the `import.gen::from` call.
 
-The package is at a very early stage but should work as advertised above. Install via:
+The package is at a very early stage but should work as advertised above.
+It uses the [`clipr` package](https://github.com/mdlincoln/clipr) by Matthew Lincoln.
+Install both via:
 
 ```
 devtools::install_github(c("mdlincoln/clipr", "krlmlr/import.gen"))
