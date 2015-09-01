@@ -3,6 +3,18 @@
 #' This function generates calls to import::\link[import]{from} that imports
 #' all symbols in a package.
 #'
+#' @param pkgs \code{[character()} or \code{list()]}\cr
+#'   Packages to generate import calls for.
+#' @param output \code{[character(1)]}\cr
+#'   What should happen with the generated calls? If \code{"clipboard"} (default),
+#'   copy to clipboard. If \code{"cat"}, print to the console. If \code{"return"},
+#'   simply return as a character vector.
+#' @param comment \code{[logical(1)]}\cr
+#'   Should comments be prepended to the generated code? Default: \code{TRUE}.
+#'
+#' @return \code{[character()]}\cr
+#'   The generated output, invisibly unless \code{output} is set to \code{"return"}.
+#'
 #' @importFrom magrittr %>%
 #' @export
 from <- function(pkgs, output = c("clipboard", "cat", "return"), comment = TRUE) {
