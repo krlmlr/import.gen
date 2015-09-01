@@ -5,6 +5,8 @@ Authors@R: as.person("Kirill Müller <krlmlr+r@mailbox.org> [aut, cre]")
 Description: This package generates calls to from::import, which by default
   can be pasted directly into the source code.
 Depends: R (>= 3.2.2)
+Imports: magrittr, clipr
+Suggests: rpart
 License: GPL-3
 LazyData: true
 Encoding: UTF-8

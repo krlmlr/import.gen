@@ -1,3 +1,5 @@
+globalVariables(c("."))
+
 #' Generate import::from calls
 #'
 #' This function generates calls to import::\link[import]{from} that imports
