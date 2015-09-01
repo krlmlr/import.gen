@@ -1,0 +1,18 @@
+# import.gen
+
+Generate import calls.
+
+Ever got bitten by conflicting symbols in the packages you attach via `library()`?
+The [`import` package](https://github.com/smbache/import) offers a solution
+by specifying exactly which symbols to load into a dedicated environment,
+instead of attaching the whole package to the search path.
+But what if you actually want all (or almost all) symbols from a package?
+
+```{r}
+import.gen::from(c("magrittr", "tidyr"), output = "cat")
+```
+
+By default, the generated code is copied to the clipboard
+so that the developer can paste it at the appropriate place right away.
+
+The package is at a very early stage but works as advertised above.
