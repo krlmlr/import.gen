@@ -5,7 +5,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @export
-from <- function(pkgs, output = c("clipboard", "cat", "character"), comment = TRUE) {
+from <- function(pkgs, output = c("clipboard", "cat", "return"), comment = TRUE) {
   output <- match.arg(output)
   ret <- lapply(pkgs, from_one) %>%
     unlist
@@ -20,7 +20,7 @@ from <- function(pkgs, output = c("clipboard", "cat", "character"), comment = TR
     output,
     clipboard = invisible(clipr::write_clip(c(ret, ""))),
     cat = cat(ret, sep = "\n"),
-    character = ret
+    `return` = ret
   )
 }
 
