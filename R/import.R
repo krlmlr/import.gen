@@ -15,6 +15,9 @@
 #' @return \code{[character()]}\cr
 #'   The generated output, invisibly unless \code{output} is set to \code{"return"}.
 #'
+#' @examples
+#' from("rpart", output = "cat")
+#'
 #' @importFrom magrittr %>%
 #' @export
 from <- function(pkgs, output = c("clipboard", "cat", "return"), comment = TRUE) {

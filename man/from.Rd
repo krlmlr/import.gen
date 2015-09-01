@@ -26,4 +26,7 @@ simply return as a character vector.}
 This function generates calls to import::\link[import]{from} that imports
 all symbols in a package.
 }
+\examples{
+from("rpart", output = "cat")
+}
 
