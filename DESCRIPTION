@@ -1,10 +1,11 @@
 Package: import.gen
-Title: What the Package Does (one line, title case)
+Title: Generate import calls
 Version: 0.0-0
 Authors@R: as.person("Kirill Müller <krlmlr+r@mailbox.org> [aut, cre]")
-Description: What the package does (one paragraph).
+Description: This package generates calls to from::import, which by default
+  can be pasted directly into the source code.
 Depends: R (>= 3.2.2)
 License: GPL-3
 LazyData: true
 Encoding: UTF-8
-GitHub: https://github.com/krlmlr/
+GitHub: https://github.com/krlmlr/import.gen
