@@ -35,7 +35,7 @@ from <- function(pkgs, output = c("clipboard", "cat", "return"), comment = TRUE)
   }
   switch(
     output,
-    clipboard = invisible(clipr::write_clip(c(ret, ""))),
+    clipboard = message_after(clipr::write_clip(c(ret, "")), "Import declaration copied to clipboard.") %>% invisible,
     cat = cat(ret, sep = "\n"),
     `return` = ret
   )
@@ -49,4 +49,10 @@ from_one <- function(pkg) {
     c(call("::", as.name("import"), as.name("from")), .) %>%
     as.call %>%
     format
+}
+
+message_after <- function(code, msg) {
+  ret <- force(code)
+  message(msg)
+  ret
 }
