@@ -5,9 +5,13 @@ globalVariables(c("."))
 #' This function generates calls to import::\link[import]{from} that imports
 #' all symbols in a package.
 #'
-#' @param .pkgs \code{[character()} or \code{list()]}
+#' @param ... \code{[character(1)}]}
 #'
 #'   Packages to generate import calls for.
+#'
+#' @param .pkgs \code{[character()} or \code{list()]}
+#'
+#'   Packages to generate import calls for, as list.
 #'
 #' @param .output \code{[character(1)]}
 #'
@@ -28,8 +32,10 @@ globalVariables(c("."))
 #'
 #' @importFrom magrittr %>%
 #' @export
-from <- function(.pkgs = NULL, .output = c("clipboard", "cat", "return"), .comment = TRUE) {
+from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
+                 .comment = TRUE) {
   .output <- match.arg(.output)
+  .pkgs <- c(list(...), .pkgs)
   ret <- lapply(.pkgs, from_one) %>%
     unlist
   if (.comment) {

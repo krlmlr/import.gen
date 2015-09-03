@@ -13,7 +13,7 @@ devtools::load_all(".")
 ```
 
 ```{r}
-import.gen::from(c("magrittr", "tidyr"), .output = "cat")
+import.gen::from("magrittr", "tidyr", .output = "cat")
 ```
 
 By default, the generated code is copied to the clipboard
