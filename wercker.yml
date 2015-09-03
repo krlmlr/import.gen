@@ -21,15 +21,13 @@ build:
         code: if ! make staticdocs; then fail "Building docs failed"; fi
 deploy:
   steps:
-    - add-ssh-key:
+    - add-ssh-key@1.0.2:
         host: github.com
         keyname: DEPLOY_SSH
     - add-to-known_hosts:
         hostname: github.com
         fingerprint: SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
-    - krlmlr/git-push:
+    - leipert/git-push@0.7.6:
         host: github.com
         gh_pages: true
         basedir: inst/web
-        debug: true
-        trace: true
