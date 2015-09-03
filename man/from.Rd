@@ -28,6 +28,6 @@ This function generates calls to import::\link[import]{from} that imports
 all symbols in a package.
 }
 \examples{
-from("rpart", output = "cat")
+from("rpart", .output = "cat")
 }
 

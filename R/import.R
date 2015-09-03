@@ -18,7 +18,7 @@ globalVariables(c("."))
 #'   The generated output, invisibly unless \code{output} is set to \code{"return"}.
 #'
 #' @examples
-#' from("rpart", output = "cat")
+#' from("rpart", .output = "cat")
 #'
 #' @importFrom magrittr %>%
 #' @export
