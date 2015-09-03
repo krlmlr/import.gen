@@ -35,11 +35,11 @@ globalVariables(c("."))
 from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
                  .comment = TRUE) {
   .output <- match.arg(.output)
-  .pkgs <- c(list(...), .pkgs)
-  ret <- lapply(.pkgs, from_one) %>%
+  .dots <- list(...)
+  ret <- lapply(c(unname(.dots), .pkgs), from_one) %>%
     unlist
   if (.comment) {
-    my_call <- list("from", .pkgs = .pkgs) %>%
+    my_call <- c(list("from"), .dots, if (!is.null(.pkgs)) list(.pkgs = .pkgs)) %>%
       do.call(call, .) %>%
       call("::", as.name("import.gen"), .)
 

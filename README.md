@@ -17,7 +17,7 @@ import.gen::from("magrittr", "tidyr", .output = "cat")
 
 ```
 ## # The imports below were generated using the following call:
-## # import.gen::from(.pkgs = list("magrittr", "tidyr"))
+## # import.gen::from("magrittr", "tidyr")
 ## import::from("magrittr", "%<>%", "%>%", "%$%", "add", "and", 
 ##     "debug_fseq", "debug_pipe", "divide_by", "divide_by_int", 
 ##     "equals", "extract", "extract2", "freduce", "functions", 
