@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 /inst/web
+_builds
+_projects
+_steps
