@@ -4,7 +4,8 @@
 \alias{from}
 \title{Generate import::from calls}
 \usage{
-from(pkgs, output = c("clipboard", "cat", "return"), comment = TRUE)
+from(.pkgs = NULL, .output = c("clipboard", "cat", "return"),
+  .comment = TRUE)
 }
 \arguments{
 \item{pkgs}{\code{[character()} or \code{list()]}\cr

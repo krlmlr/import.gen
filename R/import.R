@@ -22,19 +22,23 @@ globalVariables(c("."))
 #'
 #' @importFrom magrittr %>%
 #' @export
-from <- function(pkgs, output = c("clipboard", "cat", "return"), comment = TRUE) {
-  output <- match.arg(output)
-  ret <- lapply(pkgs, from_one) %>%
+from <- function(.pkgs = NULL, .output = c("clipboard", "cat", "return"), .comment = TRUE) {
+  .output <- match.arg(.output)
+  ret <- lapply(.pkgs, from_one) %>%
     unlist
-  if (comment) {
+  if (.comment) {
+    my_call <- list("from", .pkgs = .pkgs) %>%
+      do.call(call, .) %>%
+      call("::", as.name("import.gen"), .)
+
     ret <- c(
       "# The imports below were generated using the following call:",
-      paste0("# import.gen::", list("from", pkgs = pkgs) %>% do.call(call, .) %>% format),
+      paste0("# ", format(my_call)),
       ret
     )
   }
   switch(
-    output,
+    .output,
     clipboard = message_after(clipr::write_clip(c(ret, "")), "Import declaration copied to clipboard.") %>% invisible,
     cat = cat(ret, sep = "\n"),
     `return` = ret

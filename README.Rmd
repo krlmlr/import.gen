@@ -8,8 +8,12 @@ by specifying exactly which symbols to load into a dedicated environment,
 instead of attaching the whole package to the search path.
 But what if you actually want all (or almost all) symbols from a package?
 
+```{r echo = FALSE, message = FALSE}
+devtools::load_all(".")
+```
+
 ```{r}
-import.gen::from(c("magrittr", "tidyr"), output = "cat")
+import.gen::from(c("magrittr", "tidyr"), .output = "cat")
 ```
 
 By default, the generated code is copied to the clipboard

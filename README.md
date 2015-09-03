@@ -9,13 +9,15 @@ instead of attaching the whole package to the search path.
 But what if you actually want all (or almost all) symbols from a package?
 
 
+
+
 ```r
-import.gen::from(c("magrittr", "tidyr"), output = "cat")
+import.gen::from(c("magrittr", "tidyr"), .output = "cat")
 ```
 
 ```
 ## # The imports below were generated using the following call:
-## # import.gen::from(pkgs = c("magrittr", "tidyr"))
+## # import.gen::from(.pkgs = c("magrittr", "tidyr"))
 ## import::from("magrittr", "%<>%", "%>%", "%$%", "add", "and", 
 ##     "debug_fseq", "debug_pipe", "divide_by", "divide_by_int", 
 ##     "equals", "extract", "extract2", "freduce", "functions", 
