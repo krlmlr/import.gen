@@ -4,13 +4,17 @@
 \alias{from}
 \title{Generate import::from calls}
 \usage{
-from(.pkgs = NULL, .output = c("clipboard", "cat", "return"),
+from(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
   .comment = TRUE)
 }
 \arguments{
-\item{.pkgs}{\code{[character()} or \code{list()]}
+\item{...}{\code{[character(1)]}
 
   Packages to generate import calls for.}
+
+\item{.pkgs}{\code{[character()} or \code{list()]}
+
+  Packages to generate import calls for, as list.}
 
 \item{.output}{\code{[character(1)]}
 

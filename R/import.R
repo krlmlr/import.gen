@@ -5,7 +5,7 @@ globalVariables(c("."))
 #' This function generates calls to import::\link[import]{from} that imports
 #' all symbols in a package.
 #'
-#' @param ... \code{[character(1)}]}
+#' @param ... \code{[character(1)]}
 #'
 #'   Packages to generate import calls for.
 #'
