@@ -62,11 +62,11 @@ by specifying exactly which symbols to load into a dedicated environment,
 instead of attaching the whole package to the search path.
 But what if you actually want all (or almost all) symbols from a package?</p>
 
-<pre><code class="r">import.gen::from(c(&quot;magrittr&quot;, &quot;tidyr&quot;), .output = &quot;cat&quot;)
+<pre><code class="r">import.gen::from(&quot;magrittr&quot;, &quot;tidyr&quot;, .output = &quot;cat&quot;)
 </code></pre>
 
 <pre><code>## # The imports below were generated using the following call:
-## # import.gen::from(.pkgs = c(&quot;magrittr&quot;, &quot;tidyr&quot;))
+## # import.gen::from(&quot;magrittr&quot;, &quot;tidyr&quot;)
 ## import::from(&quot;magrittr&quot;, &quot;%&lt;&gt;%&quot;, &quot;%&gt;%&quot;, &quot;%$%&quot;, &quot;add&quot;, &quot;and&quot;, 
 ##     &quot;debug_fseq&quot;, &quot;debug_pipe&quot;, &quot;divide_by&quot;, &quot;divide_by_int&quot;, 
 ##     &quot;equals&quot;, &quot;extract&quot;, &quot;extract2&quot;, &quot;freduce&quot;, &quot;functions&quot;, 
