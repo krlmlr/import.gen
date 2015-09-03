@@ -30,3 +30,4 @@ deploy:
         host: github.com
         gh_pages: true
         basedir: inst/web
+        debug: true
