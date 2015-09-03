@@ -8,19 +8,23 @@ from(.pkgs = NULL, .output = c("clipboard", "cat", "return"),
   .comment = TRUE)
 }
 \arguments{
-\item{.pkgs}{\code{[character()} or \code{list()]}\cr
-Packages to generate import calls for.}
+\item{.pkgs}{\code{[character()} or \code{list()]}
 
-\item{.output}{\code{[character(1)]}\cr
-What should happen with the generated calls? If \code{"clipboard"} (default),
-copy to clipboard. If \code{"cat"}, print to the console. If \code{"return"},
-simply return as a character vector.}
+  Packages to generate import calls for.}
 
-\item{.comment}{\code{[logical(1)]}\cr
+\item{.output}{\code{[character(1)]}
+
+  What should happen with the generated calls? If \code{"clipboard"} (default),
+  copy to clipboard. If \code{"cat"}, print to the console. If \code{"return"},
+  simply return as a character vector.}
+
+\item{.comment}{\code{[logical(1)]}
+
   Should comments be prepended to the generated code? Default: \code{TRUE}.}
 }
 \value{
-\code{[character()]}\cr
+\code{[character()]}
+
   The generated output, invisibly unless \code{output} is set to \code{"return"}.
 }
 \description{
