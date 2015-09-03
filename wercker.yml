@@ -21,9 +21,9 @@ build:
         code: if ! make staticdocs; then fail "Building docs failed"; fi
 deploy:
   steps:
-    - krlmlr/add-ssh-key-gh-bb:
+    - add-ssh-key:
+        host: github.com
         keyname: DEPLOY_SSH
-        trace: true
     - add-to-known_hosts:
         hostname: github.com
         fingerprint: SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
