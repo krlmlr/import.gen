@@ -45,8 +45,8 @@ rerun the `import.gen::from` call.
 
 The package is at a very early stage but should work as advertised above.
 It uses the [`clipr` package](https://github.com/mdlincoln/clipr) by Matthew Lincoln.
-Install both via:
+Install the package via:
 
 ```
-devtools::install_github(c("mdlincoln/clipr", "krlmlr/import.gen"))
+devtools::install_github("krlmlr/import.gen")
 ```
