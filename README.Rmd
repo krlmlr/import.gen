@@ -1,4 +1,4 @@
-# import.gen
+# import.gen [![wercker status](https://app.wercker.com/status/26077f261fe0d472aa3b2dd5319503f7/s/master "wercker status")](https://app.wercker.com/project/bykey/26077f261fe0d472aa3b2dd5319503f7) [![codecov.io](https://codecov.io/github/krlmlr/import.gen/coverage.svg?branch=master)](https://codecov.io/github/krlmlr/import.gen?branch=master)
 
 Generate import calls.
 
