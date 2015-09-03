@@ -16,6 +16,10 @@ build:
     - script:
         name: lint
         code: if ! make lintr; then fail "Linting failed"; fi
+    - script:
+        name: purge
+        code: rm -r /usr/lib/gcc /usr/local/lib/R /usr/lib/jvm /usr/share; du -hs /* | sort -h
+
 deploy:
   steps:
     - leipert/add-ssh-key-gh-bb@0.0.6:
