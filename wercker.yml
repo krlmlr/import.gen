@@ -26,7 +26,7 @@ deploy:
     - add-to-known_hosts:
         hostname: github.com
         fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-    - krlmlr/git-push@0.7.9:
+    - krlmlr/git-push@0.7.10:
         host: github.com
         gh_pages: true
         basedir: inst/web
