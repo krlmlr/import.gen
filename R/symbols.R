@@ -13,10 +13,9 @@ find_symbols <- function(pkgs) {
     exports %>%
     list_to_df %>%
     group_by(name) %>%
-    do(data_frame(symbol = unlist(.$value))) %>%
+    do(data_frame(symbol = sort(unlist(.$value)))) %>%
     ungroup %>%
-    mutate(keep = !duplicated(symbol, fromLast = TRUE)) %>%
-    arrange(name, symbol)
+    mutate(keep = !duplicated(symbol, fromLast = TRUE))
 
   exports_df
 }
