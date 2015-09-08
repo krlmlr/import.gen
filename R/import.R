@@ -40,9 +40,7 @@ from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
   symbols <- find_symbols(c(unname(.dots), .pkgs))
   ret <- from_symbols(filter(symbols, keep))
   if (.comment) {
-    my_call <- c(list("from"), .dots, if (!is.null(.pkgs)) list(.pkgs = .pkgs)) %>%
-      do.call(call, .) %>%
-      call("::", as.name("import.gen"), .)
+    my_call <- get_call("from", .dots, .pkgs)
 
     ignore <- from_symbols(filter(symbols, !keep))
 

@@ -35,3 +35,9 @@ send_output <- function(ret, .output) {
     `return` = ret
   )
 }
+
+get_call <- function(func_name, .dots, .pkgs) {
+  c(list(func_name), .dots, if (!is.null(.pkgs)) list(.pkgs = .pkgs)) %>%
+    do.call(call, .) %>%
+    call("::", as.name("import.gen"), .)
+}
