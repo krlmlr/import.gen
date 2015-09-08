@@ -26,3 +26,12 @@ message_after <- function(code, msg) {
   message(msg)
   ret
 }
+
+send_output <- function(ret, .output) {
+  switch(
+    .output,
+    clipboard = message_after(clipr::write_clip(c(ret, "")), "Import declaration copied to clipboard.") %>% invisible,
+    cat = cat(ret, sep = "\n"),
+    `return` = ret
+  )
+}

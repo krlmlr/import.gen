@@ -57,12 +57,8 @@ importFrom <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "retur
       ret
     )
   }
-  switch(
-    .output,
-    clipboard = message_after(clipr::write_clip(c(ret, "")), "Import declaration copied to clipboard.") %>% invisible,
-    cat = cat(ret, sep = "\n"),
-    `return` = ret
-  )
+
+  send_output(ret, .output)
 }
 
 #' @importFrom magrittr %>% extract2
