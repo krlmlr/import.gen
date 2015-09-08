@@ -2,16 +2,16 @@ globalVariables(c("."))
 
 #' Generate @importFrom directives
 #'
-#' This function generates \code{@importFrom} roxygen directives that import
+#' This function generates \code{@@importFrom} roxygen directives that import
 #' all symbols in a package.
 #'
 #' @param ... \code{[character(1)]}
 #'
-#'   Packages to generate \code{@importFrom} directives for.
+#'   Packages to generate \code{@@importFrom} directives for.
 #'
 #' @param .pkgs \code{[character()} or \code{list()]}
 #'
-#'   Packages to generate \code{@importFrom} directives for, as list.
+#'   Packages to generate \code{@@importFrom} directives for, as list.
 #'
 #' @param .output \code{[character(1)]}
 #'
