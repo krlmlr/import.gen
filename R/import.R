@@ -44,13 +44,14 @@ from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
       do.call(call, .) %>%
       call("::", as.name("import.gen"), .)
 
-    ignore <- paste("#", from_symbols(filter(symbols, !keep)))
+    ignore <- from_symbols(filter(symbols, !keep))
 
     ret <- c(
       "# The imports below were generated using the following call:",
       paste0("# ", format(my_call)),
-      if (length(ignore) > 0L) "# The following symbols could not be imported:",
-      ignore,
+      if (length(ignore) > 0L) {
+        paste("#", c("The following symbols could not be imported:", ignore))
+      },
       ret
     )
   }
