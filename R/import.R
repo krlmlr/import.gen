@@ -64,7 +64,7 @@ from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
 }
 
 #' @importFrom magrittr %>%
-#' @importFrom dplyr tbl_df group_by ungroup do mutate data_frame
+#' @importFrom dplyr tbl_df group_by ungroup do mutate data_frame arrange
 #' @importFrom kimisc list_to_df
 find_symbols <- function(pkgs) {
   exports <-
@@ -78,7 +78,8 @@ find_symbols <- function(pkgs) {
     group_by(name) %>%
     do(data_frame(symbol = unlist(.$value))) %>%
     ungroup %>%
-    mutate(keep = !duplicated(symbol, fromLast = TRUE))
+    mutate(keep = !duplicated(symbol, fromLast = TRUE)) %>%
+    arrange(name, symbol)
 
   exports_df
 }
