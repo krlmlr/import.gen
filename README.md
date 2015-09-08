@@ -18,15 +18,16 @@ import.gen::from("magrittr", "tidyr", .output = "cat")
 ```
 ## # The imports below were generated using the following call:
 ## # import.gen::from("magrittr", "tidyr")
+## # The following symbols could not be imported:
+## # import::from("magrittr", "extract")
 ## import::from("magrittr", "%<>%", "%>%", "%$%", "add", "and", 
 ##     "debug_fseq", "debug_pipe", "divide_by", "divide_by_int", 
-##     "equals", "extract", "extract2", "freduce", "functions", 
-##     "inset", "inset2", "is_greater_than", "is_in", "is_less_than", 
-##     "is_weakly_greater_than", "is_weakly_less_than", "mod", "multiply_by", 
-##     "multiply_by_matrix", "n'est pas", "not", "or", "raise_to_power", 
-##     "set_attr", "set_attributes", "set_colnames", "set_names", 
-##     "set_rownames", "subtract", "%T>%", "tamper", "undebug_fseq", 
-##     "use_series")
+##     "equals", "extract2", "freduce", "functions", "inset", "inset2", 
+##     "is_greater_than", "is_in", "is_less_than", "is_weakly_greater_than", 
+##     "is_weakly_less_than", "mod", "multiply_by", "multiply_by_matrix", 
+##     "n'est pas", "not", "or", "raise_to_power", "set_attr", "set_attributes", 
+##     "set_colnames", "set_names", "set_rownames", "subtract", 
+##     "%T>%", "tamper", "undebug_fseq", "use_series")
 ## import::from("tidyr", "expand", "expand_", "extract", "extract_", 
 ##     "extract_numeric", "gather", "gather_", "separate", "separate_", 
 ##     "seq_range", "spread", "spread_", "unite", "unite_", "unnest", 
