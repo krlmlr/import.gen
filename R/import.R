@@ -82,7 +82,7 @@ find_symbols <- function(pkgs) {
   exports_df
 }
 
-#' @importFrom magrittr %>%
+#' @importFrom magrittr %>% extract2
 from_symbols <- function(pkg) {
   pkg %>%
     group_by(name) %>%
