@@ -87,7 +87,7 @@ from_symbols <- function(pkg) {
   pkg %>%
     group_by(name) %>%
     do(data_frame(format = {
-      c(call("::", as.name("import"), as.name("from")), .$name[[1L]], .$symbol) %>%
+      c(call("::", as.name("import"), as.name("from")), .$name[1L], .$symbol) %>%
         as.call %>%
         format
     })) %>%
