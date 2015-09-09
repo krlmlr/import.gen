@@ -64,7 +64,8 @@ importFrom_symbols <- function(pkg, at = TRUE) {
   pkg %>%
     group_by(name) %>%
     do(data_frame(format = {
-      paste0("#", if (at) "'", " @importFrom ", .$name[1L], " ", paste(.$symbol, collapse = " "))
+      directive <- paste0("#", if (at) "'", " @importFrom ", .$name[1L], " ")
+      paste0(directive, strwrap(paste(.$symbol, collapse = " "), 80L - nchar(directive)))
     })) %>%
     extract2("format")
 }
