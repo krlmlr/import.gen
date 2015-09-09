@@ -48,7 +48,7 @@ from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
       "# The imports below were generated using the following call:",
       paste0("# ", format(my_call)),
       if (length(ignore) > 0L) {
-        paste("#", c("The following symbols could not be imported:", ignore))
+        paste("#", c("The following symbols are duplicates and therefore not imported:", ignore))
       },
       ret
     )

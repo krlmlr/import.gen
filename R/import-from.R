@@ -39,18 +39,31 @@ importFrom <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "retur
                  .comment = TRUE) {
   .output <- match.arg(.output)
   .dots <- list(...)
-  symbols <- find_symbols(c(unname(.dots), .pkgs))
-  ret <- importFrom_symbols(filter(symbols, keep))
+
+  symbols <-
+    find_symbols(c(unname(.dots), .pkgs)) %>%
+    mutate(has_spaces = grepl(" ", symbol))
+
+  ret <- importFrom_symbols(filter(symbols, keep & !has_spaces))
+
   if (.comment) {
     my_call <- get_call("importFrom", .dots, .pkgs)
 
-    ignore <- importFrom_symbols(filter(symbols, !keep), at = FALSE)
+    ignore <- importFrom_symbols(filter(symbols, !keep), directive = "# @importFrom %s")
+
+    with_spaces <- importFrom_symbols(filter(symbols, keep & has_spaces), directive = "# %s:")
 
     ret <- c(
       "# The imports below were generated using the following call:",
       paste0("# ", format(my_call)),
       if (length(ignore) > 0L) {
-        paste("#", c("The following symbols could not be imported:", ignore))
+        c("# The following symbols are duplicates and therefore not imported:", ignore)
+      },
+      if (length(with_spaces) > 0) {
+        c(
+          "# The following symbols contain spaces and cannot be used in @importFrom:",
+          with_spaces
+        )
       },
       ret
     )
@@ -60,12 +73,12 @@ importFrom <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "retur
 }
 
 #' @importFrom magrittr %>% extract2
-importFrom_symbols <- function(pkg, at = TRUE) {
+importFrom_symbols <- function(pkg, directive = "#' @importFrom %s") {
   pkg %>%
     group_by(name) %>%
     do(data_frame(format = {
-      directive <- paste0("#", if (at) "'", " @importFrom ", .$name[1L], " ")
-      paste0(directive, strwrap(paste(.$symbol, collapse = " "), 80L - nchar(directive)))
+      named_directive <- paste0(sprintf(directive, .$name[1L]), " ")
+      paste0(named_directive, strwrap(paste(.$symbol, collapse = " "), 80L - nchar(named_directive)))
     })) %>%
     extract2("format")
 }
