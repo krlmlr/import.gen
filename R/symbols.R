@@ -12,6 +12,7 @@ find_symbols <- function(pkgs) {
   exports_df <-
     exports %>%
     list_to_df %>%
+    mutate(name = factor(name, levels = pkgs)) %>%
     group_by(name) %>%
     do(data_frame(symbol = sort(unlist(.$value)))) %>%
     ungroup %>%
