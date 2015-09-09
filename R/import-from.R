@@ -72,13 +72,19 @@ importFrom <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "retur
   send_output(ret, .output)
 }
 
+symbol_grouping <- function(symbol) {
+  groups <- gsub("^(.).*$", "\\1", symbol)
+  groups
+}
+
 #' @importFrom magrittr %>% extract2
 importFrom_symbols <- function(pkg, directive = "#' @importFrom %s") {
   pkg %>%
-    group_by(name) %>%
+    group_by(name, symbol_grouping(symbol)) %>%
     do(data_frame(format = {
       named_directive <- paste0(sprintf(directive, .$name[1L]), " ")
       paste0(named_directive, strwrap(paste(.$symbol, collapse = " "), 80L - nchar(named_directive)))
     })) %>%
+    ungroup %>%
     extract2("format")
 }
