@@ -1,3 +1,8 @@
+Version 0.0-3 (2015-09-10)
+===
+
+- Fix output of `from` (#5)
+
 Version 0.0-2 (2015-09-10)
 ===
 
