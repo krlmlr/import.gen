@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>from. import.gen 0.0-2</title>
+<title>importFrom. import.gen 0.0-2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -48,27 +48,29 @@
         
       </header>
       
-      <h1>Generate import::from calls</h1>
+      <h1>Generate @importFrom directives</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>from(..., .pkgs&nbsp;=&nbsp;NULL, .output&nbsp;=&nbsp;c("clipboard", "cat", "return"), .comment&nbsp;=&nbsp;TRUE)</div></pre>
+    <pre><div>importFrom(..., .pkgs&nbsp;=&nbsp;NULL, .output&nbsp;=&nbsp;c("clipboard", "cat", "return"), .comment&nbsp;=&nbsp;TRUE)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>...</dt>
       <dd><code>[character(1)]</code>
 
-  Packages to generate import calls for.</dd>
+  Packages to generate <code>@importFrom</code>
+  directives for.</dd>
       <dt>.pkgs</dt>
       <dd><code>[character()</code> or <code>list()]</code>
 
-  Packages to generate import calls for, as list.</dd>
+  Packages to generate <code>@importFrom</code>
+  directives for, as list.</dd>
       <dt>.output</dt>
       <dd><code>[character(1)]</code>
 
-  What should happen with the generated calls? If <code>"clipboard"</code> (default),
+  What should happen with the generated directives? If <code>"clipboard"</code> (default),
   copy to clipboard. If <code>"cat"</code>, print to the console. If <code>"return"</code>,
   simply return as a character vector.</dd>
       <dt>.comment</dt>
@@ -91,24 +93,27 @@
     <div class="Description">
       <h2>Description</h2>
 
-      <p>This function generates calls to import::<a href='http://www.inside-r.org/packages/cran/import/docs/importfunctions'>from</a> that imports
-all symbols in a package.</p>
+      <p>This function generates <code>@importFrom</code>
+roxygen directives that import all symbols in a package.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>from(&quot;rpart&quot;, .output = &quot;cat&quot;)
+    <pre class="examples"><div class='input'>importFrom(&quot;rpart&quot;, .output = &quot;cat&quot;)
 </div>
 <div class='output'># The imports below were generated using the following call:
-# import.gen::from(&quot;rpart&quot;)
-import::from(1L, &quot;meanvar&quot;, &quot;na.rpart&quot;, &quot;path.rpart&quot;, &quot;plotcp&quot;, 
-    &quot;post&quot;, &quot;printcp&quot;, &quot;prune&quot;, &quot;prune.rpart&quot;, &quot;rpart&quot;, &quot;rpart.control&quot;, 
-    &quot;rpart.exp&quot;, &quot;rsq.rpart&quot;, &quot;snip.rpart&quot;, &quot;xpred.rpart&quot;)
+# import.gen::importFrom(&quot;rpart&quot;)
+#&#39; @importFrom rpart meanvar
+#&#39; @importFrom rpart na.rpart
+#&#39; @importFrom rpart path.rpart plotcp post printcp prune prune.rpart
+#&#39; @importFrom rpart rpart rpart.control rpart.exp rsq.rpart
+#&#39; @importFrom rpart snip.rpart
+#&#39; @importFrom rpart xpred.rpart
 </div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>from</li>
+      <li>importFrom</li>
     </ul>
     <ul>
       

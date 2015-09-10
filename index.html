@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Index. import.gen 0.0-1</title>
+<title>Index. import.gen 0.0-2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">import.gen 0.0-1</a>
+      <a class="brand" href="#">import.gen 0.0-2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -67,15 +67,16 @@ But what if you actually want all (or almost all) symbols from a package?</p>
 
 <pre><code>## # The imports below were generated using the following call:
 ## # import.gen::from(&quot;magrittr&quot;, &quot;tidyr&quot;)
+## # The following symbols could not be imported:
+## # import::from(&quot;magrittr&quot;, &quot;extract&quot;)
 ## import::from(&quot;magrittr&quot;, &quot;%&lt;&gt;%&quot;, &quot;%&gt;%&quot;, &quot;%$%&quot;, &quot;add&quot;, &quot;and&quot;, 
 ##     &quot;debug_fseq&quot;, &quot;debug_pipe&quot;, &quot;divide_by&quot;, &quot;divide_by_int&quot;, 
-##     &quot;equals&quot;, &quot;extract&quot;, &quot;extract2&quot;, &quot;freduce&quot;, &quot;functions&quot;, 
-##     &quot;inset&quot;, &quot;inset2&quot;, &quot;is_greater_than&quot;, &quot;is_in&quot;, &quot;is_less_than&quot;, 
-##     &quot;is_weakly_greater_than&quot;, &quot;is_weakly_less_than&quot;, &quot;mod&quot;, &quot;multiply_by&quot;, 
-##     &quot;multiply_by_matrix&quot;, &quot;n&#39;est pas&quot;, &quot;not&quot;, &quot;or&quot;, &quot;raise_to_power&quot;, 
-##     &quot;set_attr&quot;, &quot;set_attributes&quot;, &quot;set_colnames&quot;, &quot;set_names&quot;, 
-##     &quot;set_rownames&quot;, &quot;subtract&quot;, &quot;%T&gt;%&quot;, &quot;tamper&quot;, &quot;undebug_fseq&quot;, 
-##     &quot;use_series&quot;)
+##     &quot;equals&quot;, &quot;extract2&quot;, &quot;freduce&quot;, &quot;functions&quot;, &quot;inset&quot;, &quot;inset2&quot;, 
+##     &quot;is_greater_than&quot;, &quot;is_in&quot;, &quot;is_less_than&quot;, &quot;is_weakly_greater_than&quot;, 
+##     &quot;is_weakly_less_than&quot;, &quot;mod&quot;, &quot;multiply_by&quot;, &quot;multiply_by_matrix&quot;, 
+##     &quot;n&#39;est pas&quot;, &quot;not&quot;, &quot;or&quot;, &quot;raise_to_power&quot;, &quot;set_attr&quot;, &quot;set_attributes&quot;, 
+##     &quot;set_colnames&quot;, &quot;set_names&quot;, &quot;set_rownames&quot;, &quot;subtract&quot;, 
+##     &quot;%T&gt;%&quot;, &quot;tamper&quot;, &quot;undebug_fseq&quot;, &quot;use_series&quot;)
 ## import::from(&quot;tidyr&quot;, &quot;expand&quot;, &quot;expand_&quot;, &quot;extract&quot;, &quot;extract_&quot;, 
 ##     &quot;extract_numeric&quot;, &quot;gather&quot;, &quot;gather_&quot;, &quot;separate&quot;, &quot;separate_&quot;, 
 ##     &quot;seq_range&quot;, &quot;spread&quot;, &quot;spread_&quot;, &quot;unite&quot;, &quot;unite_&quot;, &quot;unnest&quot;, 
@@ -111,6 +112,9 @@ Install the package via:</p>
         
       <li>
         <code><a href="from.html">from</a></code><br />Generate import::from calls</li>
+            
+      <li>
+        <code><a href="importFrom.html">importFrom</a></code><br />Generate @importFrom directives</li>
     
     </ul>
   </div>
@@ -120,8 +124,8 @@ Install the package via:</p>
     <h2>Dependencies</h2>
     <ul>
       
-      <li><strong>Imports</strong>: magrittr, clipr</li>
-      <li><strong>Suggests</strong>: rpart, testthat</li>
+      <li><strong>Imports</strong>: magrittr, clipr, dplyr, kimisc</li>
+      <li><strong>Suggests</strong>: rpart, testthat, disposables</li>
       
     </ul>
     <h2>Authors</h2>
