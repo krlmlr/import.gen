@@ -31,73 +31,40 @@ globalVariables(c("."))
 #' from("rpart", .output = "cat")
 #'
 #' @importFrom magrittr %>%
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter_
 #' @export
 from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
                  .comment = TRUE) {
   .output <- match.arg(.output)
   .dots <- list(...)
   symbols <- find_symbols(c(unname(.dots), .pkgs))
-  ret <- from_symbols(filter(symbols, keep))
+  ret <- from_symbols(filter_(symbols, ~keep))
   if (.comment) {
-    my_call <- c(list("from"), .dots, if (!is.null(.pkgs)) list(.pkgs = .pkgs)) %>%
-      do.call(call, .) %>%
-      call("::", as.name("import.gen"), .)
+    my_call <- get_call("from", .dots, .pkgs)
 
-    ignore <- from_symbols(filter(symbols, !keep))
+    ignore <- from_symbols(filter_(symbols, ~!keep))
 
     ret <- c(
       "# The imports below were generated using the following call:",
       paste0("# ", format(my_call)),
       if (length(ignore) > 0L) {
-        paste("#", c("The following symbols could not be imported:", ignore))
+        paste("#", c("The following symbols are duplicates and therefore not imported:", ignore))
       },
       ret
     )
   }
-  switch(
-    .output,
-    clipboard = message_after(clipr::write_clip(c(ret, "")), "Import declaration copied to clipboard.") %>% invisible,
-    cat = cat(ret, sep = "\n"),
-    `return` = ret
-  )
-}
 
-#' @importFrom magrittr %>%
-#' @importFrom dplyr tbl_df group_by ungroup do mutate data_frame arrange
-#' @importFrom kimisc list_to_df
-find_symbols <- function(pkgs) {
-  exports <-
-    pkgs %>%
-    setNames(nm = .) %>%
-    lapply(getNamespaceExports)
-
-  exports_df <-
-    exports %>%
-    list_to_df %>%
-    group_by(name) %>%
-    do(data_frame(symbol = unlist(.$value))) %>%
-    ungroup %>%
-    mutate(keep = !duplicated(symbol, fromLast = TRUE)) %>%
-    arrange(name, symbol)
-
-  exports_df
+  send_output(ret, .output)
 }
 
 #' @importFrom magrittr %>% extract2
 from_symbols <- function(pkg) {
   pkg %>%
-    group_by(name) %>%
+    group_by_(~name) %>%
     do(data_frame(format = {
       c(call("::", as.name("import"), as.name("from")), .$name[1L], .$symbol) %>%
         as.call %>%
         format
     })) %>%
     extract2("format")
-}
-
-message_after <- function(code, msg) {
-  ret <- force(code)
-  message(msg)
-  ret
 }

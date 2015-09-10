@@ -6,10 +6,10 @@ Description: This package generates calls to from::import, which by
         default can be pasted directly into the source code.
 Depends: R (>= 3.2.2)
 Imports: magrittr, clipr, dplyr, kimisc (>= 0.2-1.6)
-Suggests: rpart, testthat
+Suggests: rpart, testthat, disposables
 License: GPL-3
 LazyData: true
 Encoding: UTF-8
 GitHub: https://github.com/krlmlr/import.gen
 Issues: https://github.com/krlmlr/import.gen/issues
-URL: https://krlmlr.github.io/import.gen
+URL: http://krlmlr.github.io/import.gen
