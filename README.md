@@ -18,7 +18,7 @@ import.gen::from("magrittr", "tidyr", .output = "cat")
 ```
 ## # The imports below were generated using the following call:
 ## # import.gen::from("magrittr", "tidyr")
-## # The following symbols could not be imported:
+## # The following symbols are duplicates and therefore not imported:
 ## # import::from("magrittr", "extract")
 ## import::from("magrittr", "%<>%", "%>%", "%$%", "add", "and", 
 ##     "debug_fseq", "debug_pipe", "divide_by", "divide_by_int", 
