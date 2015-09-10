@@ -1,4 +1,4 @@
-globalVariables(c("."))
+globalVariables(c(".", "symbol", "keep", "has_spaces"))
 
 #' Generate import::from calls
 #'
