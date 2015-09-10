@@ -31,44 +31,40 @@ globalVariables(c("."))
 #' from("rpart", .output = "cat")
 #'
 #' @importFrom magrittr %>%
+#' @importFrom dplyr filter_
 #' @export
 from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
                  .comment = TRUE) {
   .output <- match.arg(.output)
   .dots <- list(...)
-  ret <- lapply(c(unname(.dots), .pkgs), from_one) %>%
-    unlist
+  symbols <- find_symbols(c(unname(.dots), .pkgs))
+  ret <- from_symbols(filter_(symbols, ~keep))
   if (.comment) {
-    my_call <- c(list("from"), .dots, if (!is.null(.pkgs)) list(.pkgs = .pkgs)) %>%
-      do.call(call, .) %>%
-      call("::", as.name("import.gen"), .)
+    my_call <- get_call("from", .dots, .pkgs)
+
+    ignore <- from_symbols(filter_(symbols, ~!keep))
 
     ret <- c(
       "# The imports below were generated using the following call:",
       paste0("# ", format(my_call)),
+      if (length(ignore) > 0L) {
+        paste("#", c("The following symbols are duplicates and therefore not imported:", ignore))
+      },
       ret
     )
   }
-  switch(
-    .output,
-    clipboard = message_after(clipr::write_clip(c(ret, "")), "Import declaration copied to clipboard.") %>% invisible,
-    cat = cat(ret, sep = "\n"),
-    `return` = ret
-  )
+
+  send_output(ret, .output)
 }
 
-#' @importFrom magrittr %>%
-from_one <- function(pkg) {
+#' @importFrom magrittr %>% extract2
+from_symbols <- function(pkg) {
   pkg %>%
-    {c(., getNamespaceExports(.) %>% sort)} %>%
-    as.list %>%
-    c(call("::", as.name("import"), as.name("from")), .) %>%
-    as.call %>%
-    format
-}
-
-message_after <- function(code, msg) {
-  ret <- force(code)
-  message(msg)
-  ret
+    group_by_(~name) %>%
+    do(data_frame(format = {
+      c(call("::", as.name("import"), as.name("from")), .$name[1L], .$symbol) %>%
+        as.call %>%
+        format
+    })) %>%
+    extract2("format")
 }
