@@ -1,7 +1,7 @@
 globalVariables(c("."))
 
 #' @importFrom magrittr %>%
-#' @importFrom dplyr tbl_df group_by ungroup do mutate data_frame arrange
+#' @importFrom dplyr tbl_df group_by_ ungroup do mutate_ data_frame
 #' @importFrom kimisc list_to_df
 find_symbols <- function(pkgs) {
   exports <-
@@ -12,11 +12,11 @@ find_symbols <- function(pkgs) {
   exports_df <-
     exports %>%
     list_to_df %>%
-    mutate(name = factor(name, levels = pkgs)) %>%
-    group_by(name) %>%
+    mutate_(name = ~factor(name, levels = pkgs)) %>%
+    group_by_(~name) %>%
     do(data_frame(symbol = sort(unlist(.$value)))) %>%
     ungroup %>%
-    mutate(keep = !duplicated(symbol, fromLast = TRUE))
+    mutate_(keep = ~!duplicated(symbol, fromLast = TRUE))
 
   exports_df
 }

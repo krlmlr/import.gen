@@ -33,7 +33,7 @@ globalVariables(c("."))
 #' importFrom("rpart", .output = "cat")
 #'
 #' @importFrom magrittr %>%
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter_
 #' @export
 importFrom <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
                  .comment = TRUE) {
@@ -42,16 +42,16 @@ importFrom <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "retur
 
   symbols <-
     find_symbols(c(unname(.dots), .pkgs)) %>%
-    mutate(has_spaces = grepl(" ", symbol))
+    mutate_(has_spaces = ~grepl(" ", symbol))
 
-  ret <- importFrom_symbols(filter(symbols, keep & !has_spaces))
+  ret <- importFrom_symbols(filter_(symbols, ~(keep & !has_spaces)))
 
   if (.comment) {
     my_call <- get_call("importFrom", .dots, .pkgs)
 
-    ignore <- importFrom_symbols(filter(symbols, !keep), directive = "# @importFrom %s")
+    ignore <- importFrom_symbols(filter_(symbols, ~!keep), directive = "# @importFrom %s")
 
-    with_spaces <- importFrom_symbols(filter(symbols, keep & has_spaces), directive = "# %s:")
+    with_spaces <- importFrom_symbols(filter_(symbols, ~(keep & has_spaces)), directive = "# %s:")
 
     ret <- c(
       "# The imports below were generated using the following call:",
@@ -80,7 +80,7 @@ symbol_grouping <- function(symbol) {
 #' @importFrom magrittr %>% extract2
 importFrom_symbols <- function(pkg, directive = "#' @importFrom %s") {
   pkg %>%
-    group_by(name, symbol_grouping(symbol)) %>%
+    group_by_(~name, ~symbol_grouping(symbol)) %>%
     do(data_frame(format = {
       named_directive <- paste0(sprintf(directive, .$name[1L]), " ")
       paste0(named_directive, strwrap(paste(.$symbol, collapse = " "), 80L - nchar(named_directive)))

@@ -1,4 +1,4 @@
-globalVariables(c(".", "symbol", "keep", "has_spaces"))
+globalVariables(c("."))
 
 #' Generate import::from calls
 #'
@@ -31,18 +31,18 @@ globalVariables(c(".", "symbol", "keep", "has_spaces"))
 #' from("rpart", .output = "cat")
 #'
 #' @importFrom magrittr %>%
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter_
 #' @export
 from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
                  .comment = TRUE) {
   .output <- match.arg(.output)
   .dots <- list(...)
   symbols <- find_symbols(c(unname(.dots), .pkgs))
-  ret <- from_symbols(filter(symbols, keep))
+  ret <- from_symbols(filter_(symbols, ~keep))
   if (.comment) {
     my_call <- get_call("from", .dots, .pkgs)
 
-    ignore <- from_symbols(filter(symbols, !keep))
+    ignore <- from_symbols(filter_(symbols, ~!keep))
 
     ret <- c(
       "# The imports below were generated using the following call:",
@@ -60,7 +60,7 @@ from <- function(..., .pkgs = NULL, .output = c("clipboard", "cat", "return"),
 #' @importFrom magrittr %>% extract2
 from_symbols <- function(pkg) {
   pkg %>%
-    group_by(name) %>%
+    group_by_(~name) %>%
     do(data_frame(format = {
       c(call("::", as.name("import"), as.name("from")), .$name[1L], .$symbol) %>%
         as.call %>%
